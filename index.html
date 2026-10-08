@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#15324b">
+<meta name="description" content="A friendly traffic signs and signals points game.">
+<title>Road Ready - Signs &amp; Signals Game</title>
+<style>
+:root{--navy:#15324b;--teal:#087e8b;--teal-dark:#05636d;--gold:#f2b544;--cream:#fffaf0;--ink:#172b3a;--muted:#526779;--line:#d7e2e9;--good:#e5f5eb;--bad:#fff3e4;--white:#fff;--shadow:0 14px 36px rgba(21,50,75,.12)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eaf2f6 0,#f6f8f9 270px);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45;min-height:100vh}button{font:inherit}.wrap{width:min(100% - 28px,760px);margin:auto;padding:22px 0 44px}.brand{background:var(--navy);color:#fff;border-radius:22px;padding:20px 22px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:12px}.brand h1{margin:0;font-size:clamp(1.35rem,5vw,2rem);letter-spacing:.02em}.brand p{margin:3px 0 0;color:#dbe9f0;font-size:.96rem}.mark{width:49px;height:49px;border-radius:15px;background:var(--gold);display:grid;place-items:center;color:var(--navy);font-weight:900;font-size:1.3rem;flex:none}.panel{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(18px,5vw,30px);box-shadow:var(--shadow)}.eyebrow{font-size:.78rem;font-weight:800;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}.panel h2{margin:4px 0 8px;font-size:clamp(1.35rem,5vw,1.8rem);line-height:1.2}.lead{margin:0 0 20px;color:var(--muted);font-size:1.05rem}select{width:100%;min-height:54px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:inherit;font-weight:700;padding:12px 14px}.round-choices{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 20px}.round-choices button,.primary,.secondary,.choice,.read-btn{min-height:52px;border-radius:14px;border:2px solid var(--line);background:#fff;color:var(--ink);font-weight:750;padding:12px 16px;cursor:pointer;touch-action:manipulation}.round-choices button[aria-pressed="true"]{border-color:var(--teal);background:#e9f7f7;color:var(--teal-dark)}.primary{display:block;width:100%;background:var(--teal);border-color:var(--teal);color:#fff;font-size:1.08rem}.primary:hover{background:var(--teal-dark)}button:focus-visible{outline:4px solid #f2b544;outline-offset:3px}.note{background:#f1f6f9;border-radius:14px;padding:14px 16px;color:#3c5364;font-size:.95rem}.score-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 15px;background:var(--navy);color:#fff;border-radius:16px;margin-bottom:16px}.score-label{font-weight:750}.score-num{font-size:1.45rem;font-weight:900;color:var(--gold)}.progress{height:9px;border-radius:99px;background:#e7eef2;overflow:hidden;margin:-4px 0 18px}.progress span{display:block;height:100%;width:0;background:var(--teal);transition:width .25s}.question-card{border:1px solid var(--line);border-radius:18px;padding:20px 16px 16px;text-align:center;background:#fff}.card-title{font-size:.78rem;letter-spacing:.11em;color:var(--muted);font-weight:800}.sign-holder{display:grid;place-items:center;min-height:145px;margin:12px auto}.sign-holder svg{width:126px;height:126px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.10))}.question{font-size:clamp(1.2rem,4.5vw,1.55rem);line-height:1.25;margin:8px 0 16px}.read-btn{min-height:42px;font-size:.92rem;padding:8px 13px;color:var(--teal-dark);border-color:#bddde0}.choices{display:grid;gap:12px;margin-top:16px}.choice{min-height:64px;text-align:left;display:flex;align-items:center;gap:14px;font-size:1.05rem;line-height:1.3;padding:14px 16px}.choice:hover:not(:disabled){border-color:var(--teal);background:#f3fbfb}.choice:disabled{cursor:default}.letter{height:32px;width:32px;flex:none;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:900}.feedback{margin-top:16px;border-radius:16px;padding:15px 16px;font-weight:700}.feedback.good{background:var(--good);color:#155c33}.feedback.try{background:var(--bad);color:#744511}.feedback p{margin:0 0 4px}.feedback .small{font-weight:500;font-size:.94rem}.next{margin-top:15px}.end-score{font-size:2.2rem;font-weight:900;color:var(--teal);margin:2px 0 14px}.end-actions{display:grid;gap:10px;margin-top:20px}.secondary{width:100%;background:#fff}.fine{margin:20px 4px 0;color:var(--muted);font-size:.86rem;text-align:center}.hidden{display:none!important}@media(min-width:600px){.choices{grid-template-columns:1fr 1fr}.choice{min-height:86px}.sign-holder{min-height:160px}.sign-holder svg{width:140px;height:140px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="brand"><div><h1>Road Ready</h1><p>Traffic signs &amp; signals points game</p></div><div class="mark" aria-hidden="true">R</div></header>
+<section id="start" class="panel">
+<div class="eyebrow">Play at your pace</div><h2>A little practice. A lot of cheering.</h2>
+<p class="lead">Choose a short round. Look at each sign, then tap an answer. You can also ask someone to read the question aloud.</p>
+<div class="eyebrow">A fresh mix every game</div>
+<p class="lead" style="margin:9px 0 16px">There are 13 rounds of 10 questions. Signs are shuffled across the full deck, so each sign appears once before the game starts a new mix.</p>
+<div class="note"><strong>Points:</strong> +1 for trying and +1 for a correct answer. Hints are okay. No points are taken away.</div>
+<button id="startBtn" class="primary" type="button" style="margin-top:18px">Start a new game</button>
+<p class="fine">At 6 points, pause to celebrate with a small choice she enjoys.</p>
+</section>
+<section id="game" class="panel hidden" aria-live="polite">
+<div class="score-row"><span class="score-label" id="roundLabel">Card 1 of 10</span><span class="score-num"><span id="score">0</span> points</span></div><p class="eyebrow" id="roundTitle" style="margin:0 0 12px"></p>
+<div class="progress" aria-label="Round progress"><span id="progressBar"></span></div>
+<div class="question-card">
+<div id="cardTitle" class="card-title"></div><div class="sign-holder" id="signArt"></div>
+<h2 id="question" class="question"></h2><button id="speakBtn" type="button" class="read-btn">🔊 Hear the question</button>
+<div id="choices" class="choices"></div>
+<button id="hintBtn" type="button" class="read-btn" style="margin-top:12px">Need a hint?</button><div id="hintText" class="note hidden" style="margin-top:10px;text-align:left" role="status"></div>
+<div id="feedback" class="feedback hidden" role="status" aria-live="assertive"></div>
+<button id="nextBtn" class="primary next hidden" type="button">Next card</button>
+</div>
+<p class="fine">You can point, say the answer, or ask for a hint.</p>
+</section>
+<section id="finish" class="panel hidden" aria-live="polite">
+<div class="eyebrow" id="finishRoundLabel">Round complete</div><h2>Look at what you did!</h2><p class="end-score"><span id="finalScore">0</span> points</p>
+<p class="lead" id="finishLine">You practiced road signs and signals.</p>
+<div class="note"><strong>Celebrate:</strong> Choose a favorite song, a short break, a snack, or another reward she enjoys.</div>
+<div class="end-actions"><button id="nextRoundBtn" class="primary hidden" type="button">Play next round</button><button id="againBtn" class="secondary" type="button">Start a new game with a new mix</button></div>
+</section>
+<p class="fine">Practice game only. Play with a support person.</p>
+</main>
+<script> 
+const c=(title,kind,correct,wrong,question='What does this sign tell you?',color='')=>({title,kind,correct,wrong,question,color});
+const rounds=[
+ {title:'1. Stop signs and traffic lights',items:[
+  c('STOP','stop','Stop fully and wait','Keep going','What do you do at this sign?'),
+  c('YIELD','yield','Slow down and let others go first','Speed up first','What should you do?'),
+  c('WRONG WAY','wrong','You are going the wrong way; stop safely','This road is right for you'),
+  c('NO TURN ON RED','reg','Wait for green before turning','Turn now','The light is red. What do you do?'),
+  c('STOP HERE ON RED','reg','Stop at the marked place','Keep rolling forward'),
+  c('CROSS TRAFFIC','plaque','Cross traffic keeps moving; wait until it is safe','Cross traffic must stop for you'),
+  c('ALL WAY','plaque','Traffic from every direction must stop','Only your direction stops'),
+  c('RED LIGHT','light','Stop','Go','What does a red light mean?'),
+  c('YELLOW LIGHT','light','Prepare to stop if it is safe','Speed up','What does a yellow light mean?'),
+  c('GREEN LIGHT','light','Go only when the way is clear','Go even if the way is blocked','When may you go?')
+ ]},
+ {title:'2. Rules and turning signs',items:[
+  c('DO NOT BLOCK INTERSECTION','reg','Keep the intersection clear','Stop in the middle'),
+  c('DO NOT ENTER','wrong','Do not drive into this road','Drive in this direction'),
+  c('DO NOT PASS','reg','Do not pass another vehicle here','Pass the car ahead'),
+  c('EMERGENCY STOPPING ONLY','reg','Stop here only for an emergency','Park here for shopping'),
+  c('KEEP RIGHT','reg','Keep to the right side','Move left'),
+  c('LEFT LANE MUST TURN LEFT','reg','Turn left from this lane','Go straight from this lane'),
+  c('LEFT ON GREEN ARROW ONLY','reg','Turn left only when the green arrow is on','Turn left on red'),
+  c('LEFT TURN SIGNAL','reg','Use the left-turn lane and signal','Turn right'),
+  c('LEFT TURN YIELD ON GREEN','reg','Turn left when safe; let other traffic go first','Turn left without checking'),
+  c('MULTIPLE TURNS ONLY','reg','This lane allows the turns shown','This lane is for going straight only')
+ ]},
+ {title:'3. Parking and vehicle rules',items:[
+  c('LIMITED PARKING','reg','Park only during the times shown','Park here any time'),
+  c('MINIMUM SPEED','reg','Do not drive slower than the posted speed when safe','Drive as slowly as you want'),
+  c('NO LEFT TURN','reg','Do not turn left','Turn left here'),
+  c('NO PARKING','reg','Do not park here','Leave your car here'),
+  c('NO PARKING ANY TIME','reg','Never park in this area','Park here for a short time'),
+  c('NO RIGHT TURN','reg','Do not turn right','Turn right here'),
+  c('NO TRUCKS','reg','Trucks may not use this road','Trucks must use this road'),
+  c('NO U-TURN','reg','Do not turn around here','Make a U-turn here'),
+  c('ONE WAY','guide','Traffic moves in one direction','Traffic moves both ways'),
+  c('PAY PARKING','reg','Pay to park here','Parking is always free')
+ ]},
+ {title:'4. Lanes and turn directions',items:[
+  c('RESERVED PARKING & VAN ACCESSIBLE','service','This accessible space is reserved for a permitted vehicle','Anyone may park here'),
+  c('RESTRICTED LANE ENDS','reg','This special lane is ending','The lane is just starting'),
+  c('RIGHT LANE MUST TURN RIGHT','reg','Turn right from the right lane','Go straight from the right lane'),
+  c('BICYCLE LANE ONLY','reg','This lane is for bicycles','This lane is for trucks'),
+  c('SLOWER TRAFFIC KEEP RIGHT','reg','Slower drivers should stay to the right','Slower drivers should stay left'),
+  c('SPEED ZONE AHEAD','warning','A new speed area is coming; watch for the limit','A rest area is ahead'),
+  c('TOW-AWAY ZONE','reg','Vehicles parked here may be towed','Free parking is available'),
+  c('TURN LEFT OR GO THROUGH','reg','This lane allows left turns or going straight','This lane is right-turn only'),
+  c('TURN RIGHT OR GO THROUGH','reg','This lane allows right turns or going straight','This lane is left-turn only'),
+  c('TWO-WAY LEFT TURN LANE','reg','Use the center lane only for left turns','Use the center lane to pass cars')
+ ]},
+ {title:'5. Warning signs: roads and animals',items:[
+  c('ADDED LANE','warning','Another lane joins; watch for traffic','The road ends right away'),
+  c('BICYCLE','warning','Watch for bicycles','Bicycles are not allowed'),
+  c('BUGGY WARNING','warning','Watch for horse-drawn buggies','Watch for a boat ramp'),
+  c('CATTLE','warning','Watch for cattle near the road','Watch for a school bus'),
+  c('NARROW BRIDGE','warning','The bridge ahead is narrow','The bridge is closed'),
+  c('OBJECT MARKERS','warning','A road object or edge is ahead','A gas station is ahead'),
+  c('INTERSECTION AHEAD','warning','Another road crosses ahead','The road ends'),
+  c('CURVE AHEAD','warning','The road curves ahead','The road is straight'),
+  c('DEER','warning','Watch for deer','Watch for cattle'),
+  c('GOLF CART','warning','Watch for golf carts','Golf carts are not allowed')
+ ]},
+ {title:'6. Warning signs: hills and lanes',items:[
+  c('PREPARE TO STOP','warning','Be ready to stop','Speed up'),
+  c('SHARP TURN SLOW DOWN','warning','Slow down for a sharp turn','Keep the same speed'),
+  c('DIVIDED HIGHWAY BEGINS','warning','A divider separates traffic directions ahead','The road becomes one lane'),
+  c('FARM MACHINERY','warning','Watch for farm vehicles','Farm vehicles are not allowed'),
+  c('FIRE STATION','warning','A fire station is nearby','A hospital is nearby'),
+  c('LANE ENDS','warning','Your lane will end; prepare to merge','A new lane starts'),
+  c('STEEP DOWNGRADE','warning','The road goes down steeply','The road goes up steeply'),
+  c('STOP AHEAD','warning','A stop sign is coming','There is no stop ahead'),
+  c('LANES SHIFTING','warning','Lanes move to a different path','Stay in the same lane path'),
+  c('LOW CLEARANCE','warning','A low bridge or ceiling is ahead','Tall vehicles fit under the bridge')
+ ]},
+ {title:'7. Warning signs: people and road conditions',items:[
+  c('LOW SHOULDER','warning','The road edge is lower than the road','The shoulder is extra wide'),
+  c('MERGING TRAFFIC','warning','Cars may join your lane','Cars must leave the road'),
+  c('TWO-WAY TRAFFIC','warning','Traffic moves both directions','Traffic moves one way'),
+  c('WINDING ROAD','warning','Several curves are ahead','The road is straight'),
+  c('PEDESTRIAN','warning','Watch for people walking across','Watch only for trucks'),
+  c('PLAYGROUND WARNING','warning','Children may be near the road','A playground is closed'),
+  c('SIDE ROAD','warning','A road joins from the side','The road ends'),
+  c('SLIPPERY WHEN WET','warning','Slow down when the road is wet','Drive faster in rain'),
+  c('T INTERSECTION','warning','The road ends at a crossroad','The road continues straight'),
+  c('TRAFFIC SIGNAL AHEAD','warning','A traffic light is coming','A train station is coming')
+ ]},
+ {title:'8. Ice, road work, and flaggers',items:[
+  c('WATCH FOR ICE ON BRIDGES','warning','Bridges may be icy; slow down','Bridges are always dry'),
+  c('YIELD AHEAD','warning','A yield sign is coming; slow down','A stop sign is coming'),
+  c('DETOUR','work','Follow the arrow to go around a closed road','Drive through the closed road'),
+  c('DETOUR AHEAD','work','A detour is coming','The road is ending permanently'),
+  c('WORKSITE ADDED PENALTIES','work','Fines may be higher in this work zone','Parking is free in the work zone'),
+  c('FLAGGER AHEAD: SIGN','work','A flagger may direct traffic ahead','A park entrance is ahead'),
+  c('FLAGGER AHEAD: SYMBOL','work','Watch for a person directing traffic','Watch for a person selling tickets'),
+  c('RIGHT LANE CLOSED','work','The right lane is closed ahead','The left lane is closed'),
+  c('ROAD WORK AHEAD','work','Slow down; road work is ahead','The road is clear of work'),
+  c('WORK CREW AHEAD','work','Workers are on or near the road','A school is ahead')
+ ]},
+ {title:'9. Railroad, school, and slow vehicles',items:[
+  c('WORKSITE SPEED LIMIT','work','Follow the posted slower speed in the work zone','Drive at any speed'),
+  c('RAILROAD: ROUND SIGN','railroad','A railroad crossing is coming','A roundabout is coming'),
+  c('RAILROAD: FLASHING LIGHTS','railroad','Stop when the railroad lights flash','Drive around the flashing lights'),
+  c('RAILROAD CROSSING','railroad','Look and listen for a train','Stop on the tracks'),
+  c('RAILROAD CROSSING AHEAD','warning','Train tracks cross the road ahead','A bridge crosses the road'),
+  c('SCHOOL CROSSING AHEAD','school','Children may cross near a school','A school is closed'),
+  c('SCHOOL CROSSING','school','Watch for children crossing','Children may not cross'),
+  c('SCHOOL BUS STOP AHEAD','school','A school bus may stop ahead','A train will stop ahead'),
+  c('SCHOOL BUS STOP','warning','Watch for a stopped school bus','Pass a stopped school bus quickly'),
+  c('SLOW-MOVING VEHICLE','slow','The vehicle ahead travels slowly','The vehicle is moving very fast')
+ ]},
+ {title:'10. Highway directions and route signs',items:[
+  c('AIRPORT','guide','An airport is nearby or ahead','An airplane may land on the road'),
+  c('BUS STATION','guide','A bus station is nearby','A train station is nearby'),
+  c('POSTED DISTANCES','guide','Shows how far places are','Shows the speed limit'),
+  c('HIGHWAY EXITS','guide','Shows where highway routes split','Shows a school crossing'),
+  c('ADVANCE GUIDE SIGN','guide','Shows an exit or turn coming up','Shows where to park'),
+  c('MILEAGE INDICATOR','guide','Shows the distance along the road','Shows the road temperature'),
+  c('STATE ROAD','guide','Identifies an Indiana state road','Identifies a parking space'),
+  c('US HIGHWAY','guide','Identifies a US highway route','Identifies a hospital'),
+  c('INTERSTATE','guide','Identifies an interstate route','Identifies a local street'),
+  c('EXIT 63: LINCOLN AVE','guide','Shows the exit for Lincoln Avenue','Shows the next rest stop')
+ ]},
+ {title:'11. Services and recreation signs',items:[
+  c('ACCOMMODATIONS','service','A place to stay is available','A gas station is available'),
+  c('AMENITIES AVAILABLE','service','Food, phone, gas, lodging, or other services are nearby','No services are available'),
+  c('BIKE TRAIL','service','A bicycle trail is nearby','Bicycles must use the highway'),
+  c('BOAT RAMP','recreation','A place to launch a boat is nearby','A boat is crossing the road'),
+  c('CAMPING SITE','service','A campsite is nearby','A hospital is nearby'),
+  c('FOOD SERVICES','service','Food is available nearby','Fuel is available nearby'),
+  c('FUEL SERVICES','service','Gas or fuel is available nearby','Food is available nearby'),
+  c('ACCESSIBLE PARKING','service','Accessible parking is here','This area is for buses'),
+  c('ACCESSIBLE PARKING: PERMIT','reg','Only vehicles with the required permit may park here','Anyone may park here'),
+  c('HISTORICAL MARKER','recreation','A historic place is nearby','A work crew is nearby')
+ ]},
+ {title:'12. More services and sign colors',items:[
+  c('HOSPITAL','service','A hospital is nearby','A campsite is nearby'),
+  c('REST AREA','service','A place to rest is coming up','A road is closed'),
+  c('ROAD / WEATHER INFO 511','service','Call 511 for road or weather information','Call 911 for restaurant directions'),
+  c('STATE PARK','recreation','A state park or recreation area is nearby','A school is nearby'),
+  c('TELEPHONE AVAILABLE','service','A phone is available nearby','A train station is nearby'),
+  c('RED SIGN COLOR','color','Red signs give important rules or tell you to act now','Red signs always show food'),
+  c('YELLOW-GREEN COLOR','color','Warns about schools, people walking, or bicycles','Shows a gas station'),
+  c('WHITE SIGN COLOR','color','Shows rules or helpful information','Shows a campground'),
+  c('ORANGE SIGN COLOR','color','Warns about road work','Shows a state park'),
+  c('GREEN SIGN COLOR','color','Shows directions or permitted routes','Warns about road work')
+ ]},
+ {title:'13. Blue and brown signs, shapes',items:[
+  c('BLUE SIGN COLOR','color','Shows road services or information','Shows road work'),
+  c('BROWN SIGN COLOR','color','Shows recreation or cultural places','Shows a speed limit'),
+  c('CIRCULAR SHAPE','shape','Warns of a railroad crossing','Means the road is closed'),
+  c('TRIANGLE SHAPE','shape','Means yield','Means one-way traffic'),
+  c('PENNANT SHAPE','shape','Marks a no-passing zone','Marks a rest area'),
+  c('RECTANGLE SHAPE','shape','Often shows rules, directions, or information','Always means a railroad crossing'),
+  c('DIAMOND SHAPE','shape','Warns about a road condition or hazard','Shows a place to eat'),
+  c('FIVE-SIDED SHAPE','shape','Warns of a school area or children crossing','Shows a highway exit'),
+  c('EIGHT-SIDED SHAPE','shape','Means stop','Means a campground'),
+  c('SIGN SHAPE CLUE','shape','A sign shape can help tell what kind of message it gives','A sign shape only shows the sign color')
+ ]}
+];
+const totalCards=rounds.reduce((n,r)=>n+r.items.length,0);
+if(rounds.length!==13||rounds.some(r=>r.items.length!==10))throw new Error('Each of the 13 rounds must have 10 cards.');
+const $=s=>document.querySelector(s);let roundIndex=0,sessionDeck=[],deck=[],index=0,points=0,answered=false;
+const startPanel=$('#start'),gamePanel=$('#game'),finishPanel=$('#finish');
+const allCards=rounds.flatMap(r=>r.items);const cardsPerRound=10;const totalRounds=allCards.length/cardsPerRound;
+if(!Number.isInteger(totalRounds)||new Set(allCards.map(x=>x.title)).size!==allCards.length)throw new Error('Every sign must be unique and rounds must contain 10 signs.');
+function shuffled(items){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+function safeText(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+function signSvg(item){const common='role="img" aria-label="'+safeText(item.title)+' traffic sign" viewBox="0 0 140 140"';
+ const label=safeText(item.title.length>15?item.title.slice(0,13)+'…':item.title);
+ if(item.kind==='stop')return `<svg ${common}><polygon points="45,8 95,8 132,45 132,95 95,132 45,132 8,95 8,45" fill="#c92735" stroke="#fff" stroke-width="5"/><text x="70" y="78" text-anchor="middle" fill="white" font-size="25" font-weight="900">STOP</text></svg>`;
+ if(item.kind==='yield')return `<svg ${common}><path d="M70 130 8 18h124z" fill="#c92735" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><text x="70" y="83" text-anchor="middle" fill="white" font-size="17" font-weight="900">YIELD</text></svg>`;
+ if(item.title==='DO NOT ENTER')return `<svg ${common}><circle cx="70" cy="70" r="55" fill="#c92735" stroke="#fff" stroke-width="5"/><rect x="29" y="60" width="82" height="20" rx="3" fill="white"/><text x="70" y="75" text-anchor="middle" fill="#c92735" font-size="9" font-weight="900">DO NOT ENTER</text></svg>`;
+ if(item.kind==='wrong')return `<svg ${common}><rect x="10" y="34" width="120" height="72" rx="8" fill="#c92735" stroke="#fff" stroke-width="5"/><text x="70" y="65" text-anchor="middle" fill="white" font-size="14" font-weight="900" textLength="92" lengthAdjust="spacingAndGlyphs">WRONG</text><text x="70" y="88" text-anchor="middle" fill="white" font-size="17" font-weight="900">WAY</text></svg>`;
+ if(item.kind==='light'){const active=item.title.startsWith('RED')?'red':item.title.startsWith('YELLOW')?'yellow':'green';const colors={red:['#c92735','#667078','#667078'],yellow:['#667078','#f2b544','#667078'],green:['#667078','#667078','#19834b']}[active];return `<svg ${common}><rect x="34" y="7" width="72" height="126" rx="19" fill="#202a33"/><circle cx="70" cy="38" r="13" fill="${colors[0]}"/><circle cx="70" cy="70" r="13" fill="${colors[1]}"/><circle cx="70" cy="102" r="13" fill="${colors[2]}"/></svg>`;}
+ if(item.kind==='railroad')return `<svg ${common}><circle cx="70" cy="70" r="59" fill="#f2d34f" stroke="#283747" stroke-width="4"/><text x="70" y="78" text-anchor="middle" fill="#172b3a" font-size="25" font-weight="900">R R</text><path d="M32 32 108 108M108 32 32 108" stroke="#172b3a" stroke-width="6"/></svg>`;
+ if(item.kind==='shape'){
+  let shape='';if(item.title.startsWith('CIRCULAR'))shape='<circle cx="70" cy="70" r="54"';else if(item.title.startsWith('TRIANGLE'))shape='<path d="M70 15 128 119H12z"';else if(item.title.startsWith('PENNANT'))shape='<path d="M18 25v90M20 30h104L20 77"';else if(item.title.startsWith('RECTANGLE'))shape='<rect x="16" y="36" width="108" height="68" rx="5"';else if(item.title.startsWith('DIAMOND'))shape='<path d="M70 8 132 70 70 132 8 70z"';else if(item.title.startsWith('FIVE'))shape='<path d="M18 122V55L70 10l52 45v67z"';else if(item.title.startsWith('EIGHT'))shape='<path d="M46 12h48l34 34v48l-34 34H46L12 94V46z"';else shape='<path d="M20 20h100v100H20z"';
+  return `<svg ${common}><g fill="#fff8d8" stroke="#17324b" stroke-width="5">${shape}/></g><text x="70" y="76" text-anchor="middle" fill="#17324b" font-size="11" font-weight="900" textLength="72" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+ }
+ if(item.kind==='color'){
+  const colors={'RED SIGN COLOR':'#c92735','YELLOW-GREEN COLOR':'#dce95c','WHITE SIGN COLOR':'#fff','ORANGE SIGN COLOR':'#f28c28','GREEN SIGN COLOR':'#28794b','BLUE SIGN COLOR':'#326bb1','BROWN SIGN COLOR':'#70452f'};const fill=colors[item.title]||'#28794b';const ink=item.title==='WHITE SIGN COLOR'?'#17324b':'#fff';
+  return `<svg ${common}><rect x="12" y="25" width="116" height="90" rx="9" fill="${fill}" stroke="#263b4e" stroke-width="4"/><text x="70" y="76" text-anchor="middle" fill="${ink}" font-size="12" font-weight="900" textLength="88" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+ }
+ const bg=item.kind==='work'?'#f28c28':item.kind==='school'?'#dce95c':item.kind==='service'?'#326bb1':item.kind==='recreation'?'#70452f':item.kind==='guide'?'#28794b':item.kind==='plaque'?'#f2d34f':item.kind==='warning'?'#f2d34f':'#fff';const ink=bg==='#f2d34f'||bg==='#dce95c'||bg==='#fff'?'#172b3a':'#fff';
+ if(item.kind==='school')return `<svg ${common}><path d="M16 128V58L70 12l54 46v70z" fill="${bg}" stroke="#283747" stroke-width="4"/><text x="70" y="76" text-anchor="middle" fill="${ink}" font-size="11" font-weight="900" textLength="84" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+ if(item.kind==='warning'||item.kind==='work')return `<svg ${common}><path d="M70 6 134 70 70 134 6 70z" fill="${bg}" stroke="#283747" stroke-width="4"/><text x="70" y="76" text-anchor="middle" fill="${ink}" font-size="10" font-weight="900" textLength="80" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+ if(item.kind==='plaque')return `<svg ${common}><rect x="8" y="35" width="124" height="70" rx="8" fill="${bg}" stroke="#283747" stroke-width="4"/><text x="70" y="76" text-anchor="middle" fill="#172b3a" font-size="10" font-weight="900" textLength="94" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+ return `<svg ${common}><rect x="10" y="22" width="120" height="96" rx="8" fill="${bg}" stroke="#283747" stroke-width="4"/><text x="70" y="76" text-anchor="middle" fill="${ink}" font-size="10" font-weight="900" textLength="92" lengthAdjust="spacingAndGlyphs">${label}</text></svg>`;
+}
+function renderCard(){answered=false;const item=deck[index];const correctFirst=Math.random()<.5;item.displayChoices=correctFirst?[item.correct,item.wrong]:[item.wrong,item.correct];item.correctIndex=correctFirst?0:1;$('#roundLabel').textContent=`Card ${index+1} of ${cardsPerRound}`;$('#roundTitle').textContent=`Round ${roundIndex+1} of ${totalRounds} - 10 new signs`;$('#score').textContent=points;$('#progressBar').style.width=`${index/10*100}%`;$('#cardTitle').textContent=item.title;$('#signArt').innerHTML=signSvg(item);$('#question').textContent=item.question;$('#feedback').className='feedback hidden';$('#feedback').innerHTML='';$('#hintText').classList.add('hidden');$('#hintText').textContent='';$('#hintBtn').disabled=false;$('#nextBtn').classList.add('hidden');$('#nextBtn').textContent=index===9?'Finish round':'Next card';$('#choices').innerHTML='';item.displayChoices.forEach((choice,n)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.innerHTML=`<span class="letter">${n===0?'A':'B'}</span><span></span>`;b.lastElementChild.textContent=choice;b.addEventListener('click',()=>choose(n));$('#choices').appendChild(b)});}
+function choose(n){if(answered)return;answered=true;points+=1;const item=deck[index],right=n===item.correctIndex;if(right)points+=1;$('#score').textContent=points;$('#choices').querySelectorAll('button').forEach(b=>b.disabled=true);$('#progressBar').style.width=`${(index+1)/10*100}%`;const f=$('#feedback');f.className=`feedback ${right?'good':'try'}`;f.innerHTML=right?`<p>That's right! +2 points.</p>`:`<p>Good try! +1 point for trying.</p>`;const explain=document.createElement('p');explain.className='small';explain.textContent=item.correct;f.appendChild(explain);$('#nextBtn').classList.remove('hidden');if(points>=6&&!sessionStorage.getItem('roadReadyRewardShown')){sessionStorage.setItem('roadReadyRewardShown','1');const reward=document.createElement('p');reward.className='small';reward.style.marginTop='8px';reward.innerHTML='<strong>You reached 6 points!</strong> Pause and choose a celebration.';f.appendChild(reward);}}
+$('#hintBtn').addEventListener('click',()=>{const item=deck[index];if(!item)return;$('#hintText').textContent=`Hint: ${item.correct}`;$('#hintText').classList.remove('hidden');$('#hintBtn').disabled=true;});
+$('#nextBtn').addEventListener('click',()=>{index++;if(index>=10)finish();else renderCard()});
+$('#speakBtn').addEventListener('click',()=>{const item=deck[index];if(!item)return;if('speechSynthesis'in window){speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(`${item.title}. ${item.question}`))}else{$('#feedback').className='feedback try';$('#feedback').textContent='Ask your support person to read the question aloud.'}});
+function showRound(){deck=sessionDeck.slice(roundIndex*cardsPerRound,(roundIndex+1)*cardsPerRound);index=0;points=0;sessionStorage.removeItem('roadReadyRewardShown');startPanel.classList.add('hidden');finishPanel.classList.add('hidden');gamePanel.classList.remove('hidden');renderCard();window.scrollTo({top:0,behavior:'smooth'})}
+function start(){sessionDeck=shuffled(allCards);roundIndex=0;showRound()}
+function finish(){const isLast=roundIndex===totalRounds-1;$('#progressBar').style.width='100%';gamePanel.classList.add('hidden');finishPanel.classList.remove('hidden');$('#finalScore').textContent=points;$('#finishRoundLabel').textContent=isLast?'All rounds complete':'Round '+(roundIndex+1)+' complete';$('#finishLine').textContent=isLast?`You used all ${allCards.length} different signs and questions. You earned ${points} points this round.`:`You finished Round ${roundIndex+1} - 10 new signs. You earned ${points} points.`;const next=$('#nextRoundBtn'),again=$('#againBtn');next.classList.toggle('hidden',isLast);next.textContent=isLast?'All rounds complete':`Continue to round ${roundIndex+2}`;again.classList.toggle('hidden',!isLast);window.scrollTo({top:0,behavior:'smooth'})}
+$('#startBtn').addEventListener('click',start);$('#againBtn').addEventListener('click',start);$('#nextRoundBtn').addEventListener('click',()=>{roundIndex++;showRound()});
+</script>
+</body>
+</html>
